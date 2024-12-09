@@ -1,244 +1,244 @@
-let data = [
-    {
-      title: 'Listing Title 1',
-      description: 'This is the description for listing 1, a great opportunity to explore.',
-      price: 488,
-      location: 'Location 1',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 2',
-      description: 'This is the description for listing 2, a great opportunity to explore.',
-      price: 356,
-      location: 'Location 2',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 3',
-      description: 'This is the description for listing 3, a great opportunity to explore.',
-      price: 1028,
-      location: 'Location 3',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 4',
-      description: 'This is the description for listing 4, a great opportunity to explore.',
-      price: 931,
-      location: 'Location 4',
-      image: 'none',
-      country: 'UK'
-    },
-    {
-      title: 'Listing Title 5',
-      description: 'This is the description for listing 5, a great opportunity to explore.',
-      price: 783,
-      location: 'Location 5',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 6',
-      description: 'This is the description for listing 6, a great opportunity to explore.',
-      price: 646,
-      location: 'Location 6',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 7',
-      description: 'This is the description for listing 7, a great opportunity to explore.',
-      price: 145,
-      location: 'Location 7',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 8',
-      description: 'This is the description for listing 8, a great opportunity to explore.',
-      price: 340,
-      location: 'Location 8',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 9',
-      description: 'This is the description for listing 9, a great opportunity to explore.',
-      price: 1089,
-      location: 'Location 9',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 10',
-      description: 'This is the description for listing 10, a great opportunity to explore.',
-      price: 195,
-      location: 'Location 10',
-      image: 'none',
-      country: 'Canada'
-    },
-    {
-      title: 'Listing Title 11',
-      description: 'This is the description for listing 11, a great opportunity to explore.',
-      price: 862,
-      location: 'Location 11',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 12',
-      description: 'This is the description for listing 12, a great opportunity to explore.',
-      price: 771,
-      location: 'Location 12',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 13',
-      description: 'This is the description for listing 13, a great opportunity to explore.',
-      price: 569,
-      location: 'Location 13',
-      image: 'none',
-      country: 'UK'
-    },
-    {
-      title: 'Listing Title 14',
-      description: 'This is the description for listing 14, a great opportunity to explore.',
-      price: 569,
-      location: 'Location 14',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 15',
-      description: 'This is the description for listing 15, a great opportunity to explore.',
-      price: 596,
-      location: 'Location 15',
-      image: 'none',
-      country: 'Canada'
-    },
-    {
-      title: 'Listing Title 16',
-      description: 'This is the description for listing 16, a great opportunity to explore.',
-      price: 590,
-      location: 'Location 16',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 17',
-      description: 'This is the description for listing 17, a great opportunity to explore.',
-      price: 210,
-      location: 'Location 17',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 18',
-      description: 'This is the description for listing 18, a great opportunity to explore.',
-      price: 498,
-      location: 'Location 18',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 19',
-      description: 'This is the description for listing 19, a great opportunity to explore.',
-      price: 651,
-      location: 'Location 19',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 20',
-      description: 'This is the description for listing 20, a great opportunity to explore.',
-      price: 662,
-      location: 'Location 20',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 21',
-      description: 'This is the description for listing 21, a great opportunity to explore.',
-      price: 188,
-      location: 'Location 21',
-      image: 'none',
-      country: 'UK'
-    },
-    {
-      title: 'Listing Title 22',
-      description: 'This is the description for listing 22, a great opportunity to explore.',
-      price: 477,
-      location: 'Location 22',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 23',
-      description: 'This is the description for listing 23, a great opportunity to explore.',
-      price: 286,
-      location: 'Location 23',
-      image: 'none',
-      country: 'UK'
-    },
-    {
-      title: 'Listing Title 24',
-      description: 'This is the description for listing 24, a great opportunity to explore.',
-      price: 796,
-      location: 'Location 24',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 25',
-      description: 'This is the description for listing 25, a great opportunity to explore.',
-      price: 342,
-      location: 'Location 25',
-      image: 'none',
-      country: 'Australia'
-    },
-    {
-      title: 'Listing Title 26',
-      description: 'This is the description for listing 26, a great opportunity to explore.',
-      price: 437,
-      location: 'Location 26',
-      image: 'none',
-      country: 'Canada'
-    },
-    {
-      title: 'Listing Title 27',
-      description: 'This is the description for listing 27, a great opportunity to explore.',
-      price: 1004,
-      location: 'Location 27',
-      image: 'none',
-      country: 'Australia'
-    },
-    {
-      title: 'Listing Title 28',
-      description: 'This is the description for listing 28, a great opportunity to explore.',
-      price: 166,
-      location: 'Location 28',
-      image: 'none',
-      country: 'India'
-    },
-    {
-      title: 'Listing Title 29',
-      description: 'This is the description for listing 29, a great opportunity to explore.',
-      price: 430,
-      location: 'Location 29',
-      image: 'none',
-      country: 'USA'
-    },
-    {
-      title: 'Listing Title 30',
-      description: 'This is the description for listing 30, a great opportunity to explore.',
-      price: 694,
-      location: 'Location 30',
-      image: 'none',
-      country: 'Australia'
-    }
-  ]
-
+let data =
+  [
+  {
+    "title": "Modern Apartment",
+    "description": "A spacious and modern apartment in the city center.",
+    "price": 850,
+    "location": "Downtown City",
+    "images": ["https://example.com/image1_1.jpg", "https://example.com/image1_2.jpg"],
+    "country": "USA"
+  },
+  {
+    "title": "Cozy Cottage",
+    "description": "A cozy and charming cottage by the countryside.",
+    "price": 450,
+    "location": "Countryside Hills",
+    "images": ["https://example.com/image2_1.jpg", "https://example.com/image2_2.jpg"],
+    "country": "UK"
+  },
+  {
+    "title": "Luxury Villa",
+    "description": "An exquisite luxury villa with stunning views.",
+    "price": 2000,
+    "location": "Beachside Paradise",
+    "images": ["https://example.com/image3_1.jpg", "https://example.com/image3_2.jpg"],
+    "country": "Australia"
+  },
+  {
+    "title": "Urban Studio",
+    "description": "A sleek urban studio ideal for young professionals.",
+    "price": 650,
+    "location": "City Center",
+    "images": ["https://example.com/image4_1.jpg", "https://example.com/image4_2.jpg"],
+    "country": "Canada"
+  },
+  {
+    "title": "Rustic Cabin",
+    "description": "A quaint rustic cabin surrounded by nature.",
+    "price": 300,
+    "location": "Forest Retreat",
+    "images": ["https://example.com/image5_1.jpg", "https://example.com/image5_2.jpg"],
+    "country": "India"
+  },
+  {
+    "title": "Penthouse Suite",
+    "description": "A luxurious penthouse suite with city skyline views.",
+    "price": 3000,
+    "location": "Downtown Luxury",
+    "images": ["https://example.com/image6_1.jpg", "https://example.com/image6_2.jpg"],
+    "country": "USA"
+  },
+  {
+    "title": "Seaside Bungalow",
+    "description": "A beautiful seaside bungalow with private beach access.",
+    "price": 1800,
+    "location": "Coastal Escape",
+    "images": ["https://example.com/image7_1.jpg", "https://example.com/image7_2.jpg"],
+    "country": "Australia"
+  },
+  {
+    "title": "Mountain Retreat",
+    "description": "A peaceful retreat in the mountains with breathtaking views.",
+    "price": 1200,
+    "location": "Mountain View",
+    "images": ["https://example.com/image8_1.jpg", "https://example.com/image8_2.jpg"],
+    "country": "Canada"
+  },
+  {
+    "title": "City Loft",
+    "description": "A chic loft apartment located in the heart of the city.",
+    "price": 950,
+    "location": "Urban Heights",
+    "images": ["https://example.com/image9_1.jpg", "https://example.com/image9_2.jpg"],
+    "country": "UK"
+  },
+  {
+    "title": "Countryside Villa",
+    "description": "A charming villa with a large garden in the countryside.",
+    "price": 600,
+    "location": "Green Valley",
+    "images": ["https://example.com/image10_1.jpg", "https://example.com/image10_2.jpg"],
+    "country": "India"
+  },
+  {
+    "title": "Beach House",
+    "description": "A modern beach house with direct ocean views.",
+    "price": 2200,
+    "location": "Sunny Shoreline",
+    "images": ["https://example.com/image11_1.jpg", "https://example.com/image11_2.jpg"],
+    "country": "USA"
+  },
+  {
+    "title": "Suburban Home",
+    "description": "A cozy home in a quiet suburban neighborhood.",
+    "price": 700,
+    "location": "Maple Lane",
+    "images": ["https://example.com/image12_1.jpg", "https://example.com/image12_2.jpg"],
+    "country": "UK"
+  },
+  {
+    "title": "Farmhouse",
+    "description": "A traditional farmhouse with modern amenities.",
+    "price": 500,
+    "location": "Rural Estate",
+    "images": ["https://example.com/image13_1.jpg", "https://example.com/image13_2.jpg"],
+    "country": "Canada"
+  },
+  {
+    "title": "Lakefront Cabin",
+    "description": "A serene lakefront cabin for a relaxing getaway.",
+    "price": 750,
+    "location": "Lake Bliss",
+    "images": ["https://example.com/image14_1.jpg", "https://example.com/image14_2.jpg"],
+    "country": "Australia"
+  },
+  {
+    "title": "Modern Duplex",
+    "description": "A contemporary duplex in a vibrant urban area.",
+    "price": 1000,
+    "location": "Urban Nexus",
+    "images": ["https://example.com/image15_1.jpg", "https://example.com/image15_2.jpg"],
+    "country": "India"
+  },
+  {
+    "title": "Heritage Home",
+    "description": "A beautiful heritage home with vintage charm.",
+    "price": 850,
+    "location": "Historic District",
+    "images": ["https://example.com/image16_1.jpg", "https://example.com/image16_2.jpg"],
+    "country": "UK"
+  },
+  {
+    "title": "Luxury Condo",
+    "description": "A premium condo with top-notch facilities.",
+    "price": 1250,
+    "location": "Skyline Tower",
+    "images": ["https://example.com/image17_1.jpg", "https://example.com/image17_2.jpg"],
+    "country": "USA"
+  },
+  {
+    "title": "Forest Lodge",
+    "description": "A secluded lodge deep within a forest.",
+    "price": 400,
+    "location": "Nature Haven",
+    "images": ["https://example.com/image18_1.jpg", "https://example.com/image18_2.jpg"],
+    "country": "Canada"
+  },
+  {
+    "title": "Oceanview Penthouse",
+    "description": "A spectacular penthouse with breathtaking ocean views.",
+    "price": 3200,
+    "location": "Blue Horizon",
+    "images": ["https://example.com/image19_1.jpg", "https://example.com/image19_2.jpg"],
+    "country": "Australia"
+  },
+  {
+    "title": "City Apartment",
+    "description": "A compact apartment perfect for urban living.",
+    "price": 550,
+    "location": "Metro Heights",
+    "images": ["https://example.com/image20_1.jpg", "https://example.com/image20_2.jpg"],
+    "country": "India"
+  },
+  {
+    "title": "Desert Villa",
+    "description": "A unique villa set amidst stunning desert landscapes.",
+    "price": 1400,
+    "location": "Desert Oasis",
+    "images": ["https://example.com/image21_1.jpg", "https://example.com/image21_2.jpg"],
+    "country": "USA"
+  },
+  {
+    "title": "Hillside Cottage",
+    "description": "A picturesque cottage on a scenic hillside.",
+    "price": 500,
+    "location": "Hillside Retreat",
+    "images": ["https://example.com/image22_1.jpg", "https://example.com/image22_2.jpg"],
+    "country": "Canada"
+  },
+  {
+    "title": "Tropical Bungalow",
+    "description": "A relaxing bungalow in a tropical setting.",
+    "price": 900,
+    "location": "Island Bliss",
+    "images": ["https://example.com/image23_1.jpg", "https://example.com/image23_2.jpg"],
+    "country": "Australia"
+  },
+  {
+    "title": "Eco Cabin",
+    "description": "An eco-friendly cabin with sustainable features.",
+    "price": 700,
+    "location": "Eco Woods",
+    "images": ["https://example.com/image24_1.jpg", "https://example.com/image24_2.jpg"],
+    "country": "India"
+  },
+  {
+    "title": "Suburban Retreat",
+    "description": "A large family home in a quiet suburb.",
+    "price": 800,
+    "location": "Willow Lane",
+    "images": ["https://example.com/image25_1.jpg", "https://example.com/image25_2.jpg"],
+    "country": "UK"
+  },
+  {
+    "title": "Island Villa",
+    "description": "An exclusive villa on a private island.",
+    "price": 5000,
+    "location": "Private Island",
+    "images": ["https://example.com/image26_1.jpg", "https://example.com/image26_2.jpg"],
+    "country": "Australia"
+  },
+  {
+    "title": "Cliffside Cabin",
+    "description": "A cozy cabin perched on a scenic cliffside.",
+    "price": 850,
+    "location": "Cliff Haven",
+    "images": ["https://example.com/image27_1.jpg", "https://example.com/image27_2.jpg"],
+    "country": "USA"
+  },
+  {
+    "title": "Downtown Condo",
+    "description": "A stylish condo in the bustling downtown area.",
+    "price": 1100,
+    "location": "Cityscape View",
+    "images": ["https://example.com/image28_1.jpg", "https://example.com/image28_2.jpg"],
+    "country": "Canada"
+  },
+  {
+    "title": "Historical Mansion",
+    "description": "A grand mansion with rich historical significance.",
+    "price": 2800,
+    "location": "Heritage Avenue",
+    "images": ["https://example.com/image29_1.jpg", "https://example.com/image29_2.jpg"],
+    "country": "UK"
+  },
+  {
+    "title": "Beachfront Suite",
+    "description": "A premium suite with stunning beachfront access.",
+    "price": 3500,
+    "location": "Sunset Cove",
+    "images": ["https://example.com/image30_1.jpg", "https://example.com/image30_2.jpg"],
+    "country": "Australia"
+  }
+]
 module.exports = data;

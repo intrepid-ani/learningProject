@@ -26,7 +26,12 @@ app.get("/", async (req, res) => {
     res.render("index", { listings });
 });
 
+app.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    const listing = await Listing.findById(id);
+    res.render("listing", { listing });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}!`);
 });
-

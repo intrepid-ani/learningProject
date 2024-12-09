@@ -20,6 +20,7 @@ ConnectDB();
 // Inserting data
 async function insert () {
     try {
+        await Listing.deleteMany({});
         await Listing.insertMany(data);
         console.log("Data inserted successfully");
     } catch (err) {
