@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
     <title>E2C-<%= listing.title %></title>
 </head>
 <body>
@@ -11,9 +12,9 @@
     <h1><%= listing.title %></h1>
     <p><%= listing.description %></p>
     <p><%= listing.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %></p>
-    <hr>
+    <p><%= listing.location %></p>
+    <p><%= listing.country%></p>
+    <hr/>
     <a href="/">Back</a>
-    <a href="/edit/<%= listing.id %>">Edit</a>
-    <a href="/delete/<%= listing.id %>">Delete</a>
 </body>
 </html>

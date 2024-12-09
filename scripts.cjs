@@ -26,10 +26,19 @@ app.get("/", async (req, res) => {
     res.render("index", { listings });
 });
 
-app.get("/:id", async (req, res) => {
+app.get("/detail/:id", async (req, res) => {
     const id = req.params.id;
     const listing = await Listing.findById(id);
-    res.render("listing", { listing });
+    try { 
+        if (!listing) {
+            res.status(404).send("Listing not found");
+        } else {    
+            res.render("detail", { listing });
+        }
+    } catch (err) {
+        console.error("Error fetching listing", err);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
 app.listen(port, () => {
