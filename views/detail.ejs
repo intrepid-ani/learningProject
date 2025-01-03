@@ -16,5 +16,9 @@
     <p><%= listing.country%></p>
     <hr/>
     <a href="/">Back</a>
+    <a href="/detail/<%= listing.id %>/edit">Edit</a>
+    <form action="/detail/<%= listing.id %>?_method=DELETE" method="post">
+        <button type="submit">Detele</button>
+    </form>
 </body>
 </html>

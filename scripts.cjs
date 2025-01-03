@@ -1,65 +1,62 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+const path = require('path');
+const Listing = require('./models/listing');
+
 const app = express();
 const port = 8000;
-const path = require('path');
-const mongoose = require('mongoose');
-const Listing = require('./models/listing');
-// const List = require('./models/list');
 
-app.set("views", path.join(__dirname, "/views"))
+// Middleware
+app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
-function ConnectDB() {
-    mongoose.connect('mongodb://localhost:27017/WonderLust')
-        .then(() => {
-            console.log("Database connected successfully");
-        })
-        .catch((err) => {
-            console.log("ERROR: ", err);
-        });
-}
-ConnectDB();
-
-
-app.get("/", async (req, res) => {
-    const listings = await Listing.find();
-    res.render("index", { listings });
-});
-
-app.get("/detail/:id", async (req, res) => {
-    const id = req.params.id;
-    const listing = await Listing.findById(id);
-    try { 
-        if (!listing) {
-            res.status(404).send("Listing not found");
-        } else {    
-            res.render("detail", { listing });
-        }
+// Database Connection
+(async function connectDB() {
+    try {
+        await mongoose.connect('mongodb://localhost:27017/WonderLust');
+        console.log("Database connected successfully");
     } catch (err) {
-        console.error("Error fetching listing", err);
+        console.error("Database connection error:", err);
+    }
+})();
+
+// Default Page route 
+app.get("/", async (req, res) => {
+    try {
+        const listings = await Listing.find();
+        res.render("index.ejs", { listings });
+    } catch (err) {
+        console.error("Error fetching listings:", err);
         res.status(500).send("Internal Server Error");
     }
 });
 
-app.get("/create-list",(req, res) => {
-    res.render("list");
+// Detail Page
+app.get("/detail/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const listing = await Listing.findById(id);
+        if (!listing) {
+            return res.status(404).send("Listing not found");
+        }
+        res.render("detail.ejs", { listing });
+    } catch (err) {
+        console.error("Error fetching listing:", err);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
-// app.post("/create-list", async (req, res) => {
-//     const { title, description, price, location } = req.body;
-//     try {
-//         const newListing = new Listing({ title, description, price, location });
-//         await newListing.save();
-//         res.redirect("/list");
-//     } catch (err) {
-//         console.error("Error creating listing", err);
-//         res.status(500).send("Internal Server Error");
-//     }
-// });
+// Create List property route
+app.get("/create-list", (req, res) => {
+    res.render("list.ejs");
+});
 
-app.post('/create-list', async (req, res) => {
+// Create List
+app.post("/create-list", async (req, res) => {
     try {
         await Listing.create({
             title: req.body.title,
@@ -68,14 +65,59 @@ app.post('/create-list', async (req, res) => {
             location: req.body.location,
             country: req.body.country
         });
-        
-        res.redirect('/');
-    } catch (error) {
-        console.error('Error creating new list:', error);
-        res.status(500).send('Error creating new listing');
+        res.redirect("/");
+    } catch (err) {
+        console.error("Error creating new listing:", err);
+        res.status(500).send("Error creating new listing");
     }
 });
 
+// Edit List Form
+app.get("/detail/:id/edit", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const listing = await Listing.findById(id);
+        if (!listing) {
+            return res.status(404).send("Listing not found");
+        }
+        res.render("edit.ejs", { listing });
+    } catch (err) {
+        console.error("Error fetching listing for edit:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Update List
+app.put("/detail/:id", async (req, res) => {
+    try {
+        const { title, description, country, location, price } = req.body;
+        await Listing.findByIdAndUpdate(req.params.id, {
+            title,
+            description,
+            country,
+            location,
+            price
+        });
+        res.redirect("/");
+    } catch (err) {
+        console.error("Error updating listing:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Delete List
+app.delete("/detail/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Listing.findByIdAndDelete(id);
+        res.redirect("/");
+    } catch (err) {
+        console.error("Error deleting listing:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Start Server
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}!`);
+    console.log(`Server is running at http://localhost:${port}`);
 });
