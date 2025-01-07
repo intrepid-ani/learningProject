@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const path = require('path');
 const Listing = require('./models/listing');
+const ejsMate = require('ejs-mate');
 
 const app = express();
 const port = 8000;
@@ -13,6 +14,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.engine('ejs', ejsMate);
 
 // Database Connection
 (async function connectDB() {
@@ -91,14 +93,15 @@ app.get("/detail/:id/edit", async (req, res) => {
 app.put("/detail/:id", async (req, res) => {
     try {
         const { title, description, country, location, price } = req.body;
-        await Listing.findByIdAndUpdate(req.params.id, {
+        const id = req.params.id
+        await Listing.findByIdAndUpdate(id , {
             title,
             description,
             country,
             location,
             price
         });
-        res.redirect("/");
+        res.redirect(`/detail/${id}`);
     } catch (err) {
         console.error("Error updating listing:", err);
         res.status(500).send("Internal Server Error");
