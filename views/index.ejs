@@ -1,21 +1,22 @@
 <% layout ('layouts/base') -%>
 
-    <!-- Create New list -->
-    <form action="/create-list">
-        <button type="submit">Create New Listing</button>
-    </form>
-    <hr>
-    <h1>Latest Listings</h1>
-    <hr>
-    <div class="list-container">
-        <% for(let list of listings) { %>
-        <div class="listing">
-            <h2><%= list.title %></h2>
-            <p><%= list.description %></p>
-            <p><%= list.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %></p>
-            <a href="/detail/<%= list.id %>">View</a>
-        </div>
-        <% } %>
+<h3>Latest Listings</h3>
+<hr>
+<div class="list-container">
+  <% for(let list of listings) { %>
+  <a href="/detail/<%= list.id %>">
+    <div class="card" style="width: 18rem;">
+      <img src="" class="card-img-top" alt="src-img">
+      <div class="card-body">
+        <h3 class="card-text"><%= list.title %></h3>
+        <p class="card-text"><%= list.description %></p>
+        <p><%= list.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %> / night</p>
+      </div>
     </div>
+  </a>
+  <% } %>
+
+</div>
 </body>
+
 </html>

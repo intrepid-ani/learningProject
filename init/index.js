@@ -1,6 +1,6 @@
 // Entering the Data from data.js into to the database
 
-const Listing = require('../models/Listing');
+const Listing = require('../models/listing.models.js');
 let data = require('./data');
 const mongoose = require('mongoose');
 
@@ -18,7 +18,7 @@ function ConnectDB(){
 ConnectDB();
 
 // Inserting data
-async function insert () {
+(async function insert () {
     try {
         await Listing.deleteMany({});
         await Listing.insertMany(data);
@@ -26,6 +26,4 @@ async function insert () {
     } catch (err) {
         console.log("ERROR: ", err);
     }
-}
-
-insert();
+})();
