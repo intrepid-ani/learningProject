@@ -27,14 +27,14 @@ app.engine('ejs', ejsMate);
 })();
 
 app.get("/", (req, res) =>{ 
-    res.render("home.ejs");
+    res.render("pages/home.ejs");
 })
 
 // Default Page route 
 app.get("/view-listing", async (req, res) => {
     try {
         const listings = await Listing.find();
-        res.render("index.ejs", { listings });
+        res.render("pages/index.ejs", { listings });
     } catch (err) {
         console.error("Error fetching listings:", err);
         res.status(500).send("Internal Server Error");
@@ -49,7 +49,7 @@ app.get("/detail/:id", async (req, res) => {
         if (!listing) {
             return res.status(404).send("Listing not found");
         }
-        res.render("detail.ejs", { listing });
+        res.render("pages/detail.ejs", { listing });
     } catch (err) {
         console.error("Error fetching listing:", err);
         res.status(500).send("Internal Server Error");
@@ -58,20 +58,21 @@ app.get("/detail/:id", async (req, res) => {
 
 // Create List property route
 app.get("/create-list", (req, res) => {
-    res.render("list.ejs");
+    res.render("pages/list.ejs");
 });
 
 // Create List
 app.post("/create-list", async (req, res) => {
     try {
-        await Listing.create({
+        const dataInstant = await Listing.create({
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
             location: req.body.location,
             country: req.body.country
         });
-        res.redirect("/");
+        const id = Listing.findOne({title : dataInstant.title})
+        res.redirect(`details/${id}`);
     } catch (err) {
         console.error("Error creating new listing:", err);
         res.status(500).send("Error creating new listing");
@@ -86,7 +87,7 @@ app.get("/detail/:id/edit", async (req, res) => {
         if (!listing) {
             return res.status(404).send("Listing not found");
         }
-        res.render("edit.ejs", { listing });
+        res.render("pages/edit.ejs", { listing });
     } catch (err) {
         console.error("Error fetching listing for edit:", err);
         res.status(500).send("Internal Server Error");
@@ -117,7 +118,7 @@ app.delete("/detail/:id", async (req, res) => {
     try {
         const id = req.params.id;
         await Listing.findByIdAndDelete(id);
-        res.redirect("/");
+        res.redirect("/view-listing");
     } catch (err) {
         console.error("Error deleting listing:", err);
         res.status(500).send("Internal Server Error");
