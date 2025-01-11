@@ -7,11 +7,12 @@ const ejsMate = require('ejs-mate');
 
 const app = express();
 const port = 8000;
+const dir = __dirname;
 
 // Middleware
-app.set("views", path.join(__dirname, "/views"));
+app.set("views", path.join(dir, "/views"));
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname,"/public")));
+app.use(express.static(path.join(dir, "/public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsMate);
@@ -67,12 +68,14 @@ app.post("/create-list", async (req, res) => {
         const dataInstant = await Listing.create({
             title: req.body.title,
             description: req.body.description,
+            images: req.body.images,
             price: req.body.price,
             location: req.body.location,
             country: req.body.country
         });
-        const id = Listing.findOne({title : dataInstant.title})
-        res.redirect(`details/${id}`);
+        const idInstance = await Listing.findOne({title : dataInstant.title})
+        const id = idInstance._id;
+        res.redirect(`detail/${id}`);
     } catch (err) {
         console.error("Error creating new listing:", err);
         res.status(500).send("Error creating new listing");
@@ -97,11 +100,12 @@ app.get("/detail/:id/edit", async (req, res) => {
 // Update List
 app.put("/detail/:id", async (req, res) => {
     try {
-        const { title, description, country, location, price } = req.body;
+        const { title, description, images, country, location, price } = req.body;
         const id = req.params.id
         await Listing.findByIdAndUpdate(id , {
             title,
             description,
+            images,
             country,
             location,
             price

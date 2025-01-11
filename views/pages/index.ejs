@@ -1,21 +1,27 @@
 <% layout ('layouts/base') -%>
-
+<br><br>
 <h3>Latest Listings</h3>
 <hr>
 <div class="list-container">
-  <% for(let list of listings) { %>
-  <a href="/detail/<%= list.id %>">
-    <div class="card" style="width: 18rem;">
-      <img src="" class="card-img-top" alt="src-img">
-      <div class="card-body">
-        <h3 class="card-text"><%= list.title %></h3>
-        <p class="card-text"><%= list.description %></p>
-        <p><%= list.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %> / night</p>
-      </div>
+  <div class="row">
+    <% for(let list of listings) { %>
+    <div class="col-lg-4 col-md-2 col-sm-1 mb-5">
+      <a href="/detail/<%= list.id %>" class="text-decoration-none">
+        <div class="card card-dec">
+          <img src="<%= list.images %>" class="card-img-top" alt="src-img" style="height: 18rem;">
+          <div class="card-img-overlay hover-dec">
+            <p><%= list.description %></p>
+          </div>
+          <div class="card-body">
+            <h3 class="card-text"><%= list.title %></h3>
+            <p><%= list.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %> / night</p>
+          </div>
+        </div>
+      </a>
     </div>
-  </a>
-  <% } %>
-
+    <% } %>
+  </div>
+</div>
 </div>
 </body>
 

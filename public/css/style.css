@@ -2,3 +2,39 @@ body{
     background-color: #242424;
     color: beige;
 }
+
+.container { 
+    min-height: 100vh;
+}
+
+img{
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.card-decorator{
+    background-color: #303030;
+    color : #ececec
+}
+
+.hover-dec { 
+    background-color: #303030 ;
+    color : rgb(221, 221, 221);
+    opacity : 0;
+}
+
+.card-dec{
+    border: whitesmoke solid 2px; 
+    background-color: #30303000;
+    padding: 3px;
+    color: whitesmoke !important;
+
+}
+
+.card-decorator :hover .hover-dec{
+    opacity: 100;
+}
+
+footer {
+    height : 15vh;
+}
