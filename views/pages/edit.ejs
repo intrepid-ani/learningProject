@@ -1,38 +1,45 @@
 <% layout ('layouts/base.ejs') -%>
 
-<h3>Edit <%= listing.title %></h3>
-<!-- Create New list -->
-<form action="/detail/<%= listing.id %>?_method=PUT" method="post">
+<div class="row-12">
+  <div class="col-8 offset-2">
+    <h3>Edit <%= listing.title %></h3>
+    <!-- Create New list -->
+    <form action="/detail/<%= listing.id %>?_method=PUT" method="post">
 
-  <div class="title">
-    <label for="title">Title</label><br>
-    <input type="text" name="title" value="<%= listing.title %>" required><br />
+      <div class="title">
+        <label for="title" class="from-label">Title</label><br>
+        <input type="text" name="title" class="form-control" value="<%= listing.title %>" required><br />
+      </div>
+
+      <div class="discription">
+        <label for="description" class="from-label">description</label><br>
+        <input type="text" name="description" class="form-control" value="<%= listing.description %>" required><br />
+      </div>
+
+      <div class="images">
+        <label for="images" class="from-label">Image link</label><br>
+        <input type="text" name="images" class="form-control" value=<%= listing.images %> required><br />
+      </div>
+
+      <div class="row">
+        <div class="location col-8">
+          <label for="location" class="from-label">Location</label><br>
+          <input type="text" name="location" class="form-control" value='<%= listing.location %>' required><br />
+        </div>
+
+        <div class="country col-4">
+          <label for="country" class="from-label">Country</label><br>
+          <input type="text" name="country" class="form-control" value=<%= listing.country %> required><br />
+        </div>
+
+        <div class="price">
+          <label for="price" class="from-label">Price</label><br>
+          <input type="number" name="price" class="form-control" value=<%= listing.price %> required><br />
+        </div>
+      </div>
+
+      <button type="submit"> Done </button>
+    </form><br />
+
   </div>
-
-  <div class="discription">
-    <label for="description">description</label><br>
-    <input type="text" name="description" value="<%= listing.description %>" required><br />
-  </div>
-
-  <div class="images">
-    <label for="images">Image link</label><br>
-    <input type="text" name="images" value=<%= listing.images %> required><br />
-  </div>
-
-  <div class="price">
-    <label for="price">Price</label><br>
-    <input type="number" name="price" value=<%= listing.price %> required><br />
-  </div>
-
-  <div class="location">
-    <label for="location">Location</label><br>
-    <input type="text" name="location" value='<%= listing.location %>' required><br />
-  </div>
-
-  <div class="country">
-    <label for="country">Country</label><br>
-    <input type="text" name="country" value=<%= listing.country %> required><br />
-  </div>
-
-  <button type="submit"> Done </button>
-</form><br />
+</div>

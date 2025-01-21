@@ -1,14 +1,20 @@
 <% layout ('layouts/base') -%>
 
-<h1><%= listing.title %></h1>
-<hr>
-<img src=<%= listing.images %> />
-<p><%= listing.description %></p>
-<p><%= listing.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %></p>
-<p><%= listing.location %></p>
-<p><%= listing.country%></p>
-<hr />
-<a href="/detail/<%= listing.id %>/edit">Edit</a>
-<form action="/detail/<%= listing.id %>?_method=DELETE" method="post">
-  <button type="submit">Detele</button>
-</form>
+<div class="row-12">
+  <div class="col-8 offset-2">
+    <h1><%= listing.title %></h1>
+    <hr>
+    <div class="img">
+      <img src=<%= listing.images %> />
+    </div>
+    <p><%= listing.description %></p>
+    <p><%= listing.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %></p>
+    <p><%= listing.location %></p>
+    <p><%= listing.country%></p>
+    <hr />
+    <a href="/detail/<%= listing.id %>/edit">Edit</a>
+    <form action="/detail/<%= listing.id %>?_method=DELETE" method="post">
+      <button type="submit">Detele</button>
+    </form>
+  </div>
+</div>

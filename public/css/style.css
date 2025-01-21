@@ -1,40 +1,46 @@
-body{
-    background-color: #242424;
-    color: beige;
+body {
+  background-color: #242424;
+  color: beige;
+  font-family: "Roboto", Verdana, sans-serif;
 }
 
-.container { 
-    min-height: 100vh;
+.container {
+  min-height: 100vh;
 }
 
-img{
-    border-radius: 15px;
-    object-fit: cover;
+.img {
+  border-radius: 15px;
+  height: 50vh;
+  width: 50vw;
 }
 
-.card-decorator{
-    background-color: #303030;
-    color : #ececec
+img {
+  object-fit: cover;
+  /* background-position: center center; */
 }
 
-.hover-dec { 
-    background-color: #303030 ;
-    color : rgb(221, 221, 221);
-    opacity : 0;
+.card-decorator {
+  background-color: #303030;
+  color: #ececec;
 }
 
-.card-dec{
-    border: whitesmoke solid 2px; 
-    background-color: #30303000;
-    padding: 3px;
-    color: whitesmoke !important;
-
+.hover-dec {
+  background-color: #303030;
+  color: rgb(221, 221, 221);
+  opacity: 0;
 }
 
-.card-decorator :hover .hover-dec{
-    opacity: 100;
+.card-dec {
+  border: whitesmoke solid 2px;
+  background-color: #30303000;
+  padding: 3px;
+  color: whitesmoke !important;
+}
+
+.card-decorator :hover .hover-dec {
+  opacity: 100;
 }
 
 footer {
-    height : 15vh;
+  height: 15vh;
 }
