@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Caveat:wght@400..700&family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Jersey+15&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Space+Grotesk:wght@300..700&display=swap");
+
 body {
   background-color: #242424;
   color: beige;
@@ -9,14 +11,21 @@ body {
 }
 
 .img {
-  border-radius: 15px;
+  border-radius: 10px;
   height: 50vh;
   width: 50vw;
+  overflow: hidden;
 }
 
 img {
+  border-radius: 10px;
   object-fit: cover;
-  /* background-position: center center; */
+}
+
+input {
+  background-color: transparent !important;
+  font-family: "Space Grotesk", monospace, sans-serif !important;
+  color: rgb(245, 245, 245) !important;
 }
 
 .card-decorator {
@@ -43,4 +52,17 @@ img {
 
 footer {
   height: 15vh;
+}
+
+/* UTILITY */
+
+.flex-btn {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-primary {
+  background: #df4040 !important;
+  border: none;
 }

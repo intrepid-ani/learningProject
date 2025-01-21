@@ -1,20 +1,26 @@
 <% layout ('layouts/base') -%>
-
-<div class="row-12">
-  <div class="col-8 offset-2">
-    <h1><%= listing.title %></h1>
-    <hr>
-    <div class="img">
-      <img src=<%= listing.images %> />
+<br><br>
+<div class="row-12 flex">
+  <div class="col-10 offset-1">
+    <h2 class="fw-bold fs-2"><%= listing.title %></h2>
+    <div class="row-10">
+      <hr>
+      <div class="col-8 offset-2">
+        <div class="img my-5">
+          <img src=<%= listing.images %> />
+        </div>
+        <p class="fw-semibold fs-4"><%= listing.description %></p>
+        <p class="fw-medium fs-5"><%= listing.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %></p>
+        <p class="fw-medium fs-5"><%= listing.location %>, <%= listing.country%></p>
+        <p class="fw-medium fs-5"></p>
+        <hr />
+        <div class="col-6 flex-btn px-2">
+          <a class="btn btn-primary" href="/detail/<%= listing.id %>/edit">Edit</a>
+          <form action="/detail/<%= listing.id %>?_method=DELETE" method="post">
+            <button class="btn btn-light" type="submit">Detele</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <p><%= listing.description %></p>
-    <p><%= listing.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %></p>
-    <p><%= listing.location %></p>
-    <p><%= listing.country%></p>
-    <hr />
-    <a href="/detail/<%= listing.id %>/edit">Edit</a>
-    <form action="/detail/<%= listing.id %>?_method=DELETE" method="post">
-      <button type="submit">Detele</button>
-    </form>
   </div>
 </div>
