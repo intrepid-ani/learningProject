@@ -6,37 +6,55 @@
   <div class="col-8 offset-2">
     <h3> List Your Property</h3>
 
-    <form method="post" action="/create-list">
+    <form class="needs-validation" method="post" action="/create-list" novalidate>
       <div class="title">
         <label for="title" class="from-label">Title</label><br>
         <input type="text" class="form-control bg-tarnsparent" name="title" placeholder="Title" required><br />
+        <div class="invalid-feedback">
+          Please provide title
+        </div>
       </div>
 
       <div class="description ">
         <label for="description" class="from-label">Description</label><br>
         <input type="text" class="form-control" name="description" placeholder="Description" required><br />
+        <div class="invalid-feedback">
+          Please provide description
+        </div>
       </div>
 
       <div class="images ">
         <label for="images" class="from-label">Image link</label><br>
         <input type="text" class="form-control" name="images" placeholder="imageURL" required><br />
+        <div class="invalid-feedback">
+          Please provide Image link
+        </div>
       </div>
 
       <div class="row">
         <div class="location col-8 ">
           <label for="location" class="from-label">Location</label><br>
           <input type="text" class="form-control" name="location" placeholder="Location" required><br />
+          <div class="invalid-feedback">
+            Please provide location
+          </div>
         </div>
 
         <div class="country col-4">
           <label for="country" class="from-label">Country</label><br>
           <input type="text" class="form-control" name="country" placeholder="Country" required><br />
+          <div class="invalid-feedback">
+            Please provide country
+          </div>
         </div>
       </div>
 
       <div class="price ">
         <label for="price" class="from-label">Price</label><br>
         <input type="number" class="form-control" name="price" placeholder="Price" required><br />
+        <div class="invalid-feedback">
+          Please provide price
+        </div>
       </div>
 
       <button class="btn btn-primary" type="submit"> Submit </button>

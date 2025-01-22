@@ -6,8 +6,18 @@ body {
   font-family: "Roboto", Verdana, sans-serif;
 }
 
+nav {
+  background-color: #df4040 !important;
+  color: white !important;
+}
+
 .container {
   min-height: 100vh;
+}
+
+.card-hover:hover {
+  opacity: 0.8;
+  box-shadow: 8px 4px 10px #df4040;
 }
 
 .img {
@@ -67,4 +77,8 @@ footer {
 .btn-primary {
   background: #df4040 !important;
   border: none;
+}
+
+.flex {
+  display: flex;
 }

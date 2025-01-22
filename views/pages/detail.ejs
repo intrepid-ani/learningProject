@@ -14,9 +14,9 @@
         <p class="fw-medium fs-5"><%= listing.location %>, <%= listing.country%></p>
         <p class="fw-medium fs-5"></p>
         <hr />
-        <div class="col-6 flex-btn px-2">
-          <a class="btn btn-primary" href="/detail/<%= listing.id %>/edit">Edit</a>
-          <form action="/detail/<%= listing.id %>?_method=DELETE" method="post">
+        <div class="flex gap-3 px-2 row-8">
+          <a class="col-md-2 btn btn-primary" href="/detail/<%= listing.id %>/edit">Edit</a>
+          <form class="col-md-2" action="/detail/<%= listing.id %>?_method=DELETE" method="post">
             <button class="btn btn-light" type="submit">Detele</button>
           </form>
         </div>

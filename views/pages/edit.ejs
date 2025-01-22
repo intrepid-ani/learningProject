@@ -4,37 +4,52 @@
   <div class="col-8 offset-2">
     <h3>Edit <%= listing.title %></h3>
     <!-- Create New list -->
-    <form action="/detail/<%= listing.id %>?_method=PUT" method="post">
+    <form class="needs-validation" action="/detail/<%= listing.id %>?_method=PUT" method="post" novalidate>
 
       <div class="title">
         <label for="title" class="from-label">Title</label><br>
         <input type="text" name="title" class="form-control" value="<%= listing.title %>" required><br />
+        <div class="invalid-feedback">
+          Please provide title
+        </div>
       </div>
 
       <div class="discription">
         <label for="description" class="from-label">description</label><br>
         <input type="text" name="description" class="form-control" value="<%= listing.description %>" required><br />
+        <div class="invalid-feedback">
+          Please provide discription
+        </div>
       </div>
 
       <div class="images">
         <label for="images" class="from-label">Image link</label><br>
-        <input type="text" name="images" class="form-control" value=<%= listing.images %> required><br />
+        <input type="text" name="images" class="form-control" value=<%= listing.images %>><br />
       </div>
 
       <div class="row">
         <div class="location col-8">
           <label for="location" class="from-label">Location</label><br>
           <input type="text" name="location" class="form-control" value='<%= listing.location %>' required><br />
+          <div class="invalid-feedback">
+            Please provide location
+          </div>
         </div>
 
         <div class="country col-4">
           <label for="country" class="from-label">Country</label><br>
           <input type="text" name="country" class="form-control" value=<%= listing.country %> required><br />
+          <div class="invalid-feedback">
+            Please provide country name
+          </div>
         </div>
 
         <div class="price">
           <label for="price" class="from-label">Price</label><br>
           <input type="number" name="price" class="form-control" value=<%= listing.price %> required><br />
+          <div class="invalid-feedback">
+            Please provide price
+          </div>
         </div>
       </div>
 
