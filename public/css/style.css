@@ -6,9 +6,17 @@ body {
   font-family: "Roboto", Verdana, sans-serif;
 }
 
-nav {
-  background-color: #df4040 !important;
-  color: white !important;
+.navbar {
+  background-color: #df4040 !important; /* Change navbar background */
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: white !important; /* Change text color */
+}
+
+.navbar .nav-link:hover {
+  color: #df9898 !important; /* Change hover color */
 }
 
 .container {
@@ -52,7 +60,7 @@ input {
 }
 
 .card-dec {
-  border: whitesmoke solid 2px;
+  /* border: whitesmoke solid 2px; */
   background-color: #30303000;
   padding: 3px;
   color: whitesmoke !important;
