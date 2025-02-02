@@ -20,15 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
-function validateSchema(req, res, next) {
-  let { error } = listingSchema.validate(req.body);
-  if (error) {
-    next(new customError(400, error));
-  }
-  console.log(listingSchema.validate(req.body));
-  next();
-}
-
 // Database Connection
 async function connectDB() {
   try {
