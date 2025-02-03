@@ -4,9 +4,11 @@ const methodOverride = require("method-override");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const Listing = require("./models/listing.models.js");
+const Review = require("./models/review.models.js");
 const customError = require("./utils/customError.utils.js");
 const wrapAsync = require("./utils/wrapAsync.utils.js");
-const listingSchema = require("./utils/listingSchema.utils.js");
+const validateListing = require("./models/validate/listing.validate.js");
+const validateReview = require("./models/validate/review.validate.js");
 
 const app = express();
 const port = 8000;
@@ -59,13 +61,34 @@ app.get(
   })
 );
 
+app.post(
+  "/detail/:id/review",
+  validateReview,
+  wrapAsync(async (req, res) => {
+    console.log("Entered");
+    const { id } = req.params;
+    const { rating, comment } = req.body;
+
+    const newReview = new Review({ rating, comment });
+    await newReview.save();
+
+    let list = Listing.findById(id);
+
+    // if (list) {
+    //   throw new customError(400, `Bad request (List Not Found)`);
+    // }
+
+    res.redirect(`/detail/${id}`);
+  })
+);
+
 app.get("/create-list", (req, res) => {
   res.render("pages/list.ejs");
 });
 
 app.post(
   "/create-list",
-  validateSchema,
+  validateListing,
   wrapAsync(async (req, res) => {
     const dataInstant = await Listing.create(req.body);
     res.redirect(`/detail/${dataInstant._id}`);
@@ -111,6 +134,7 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   const { status = 500, message = "Something went wrong!" } = err;
+  console.log(err);
   res.status(status).render("pages/error.ejs", { status, message });
 });
 

@@ -1,0 +1,22 @@
+<div class="card p-4 bg-dark shadow">
+  <h4 class="text-center text-white mb-3">Write a Review</h4>
+
+  <form id="reviewForm" action="/detail/<%= listing._id %>/review" method="POST">
+    <div class="text-center mb-3">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+
+    <input type="hidden" name="rating" id="ratingInput" value="0">
+    <p class="text-center text-white mb-3">Rating: <span id="ratingValue">0</span>/5</p>
+
+    <div class="mb-3">
+      <textarea name="comment" id="comment" class="form-control bg-secondary text-white" rows="3" placeholder="Write your review..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn col-md-2 btn btn-primary">Submit</button>
+  </form>
+</div>

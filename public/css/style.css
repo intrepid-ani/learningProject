@@ -90,3 +90,20 @@ footer {
 .flex {
   display: flex;
 }
+
+/* .card {
+  max-width: 400px;
+  margin: auto;
+} */
+
+.star {
+  font-size: 2rem;
+  cursor: pointer;
+  color: gray;
+  transition: color 0.3s;
+}
+
+.star.active,
+.star:hover {
+  color: gold;
+}
