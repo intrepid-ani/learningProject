@@ -107,3 +107,7 @@ footer {
 .star:hover {
   color: gold;
 }
+
+text-white {
+  color: whitesmoke !important;
+}

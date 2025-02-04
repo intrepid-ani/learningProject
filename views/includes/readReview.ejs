@@ -1,0 +1,12 @@
+<% listing.reviews.forEach(review => { %>
+<div class="card bg-transparent mb-4 text-white col-6">
+  <div class="card-body">
+    <h5 class="card-title text-white" style="color: white;"><u>Customer <%= review.name %></u></h5>
+    <h6 class="card-subtitle lg-2">Stars: <%= review.rating %></h6>
+    <p class="card-text" style="color: white;"><%= review.comment %></p>
+  </div>
+  <form action="/detail/<%= listing._id %>/review/<%= review._id %>?_method=DELETE" method="post">
+    <button class="btn btn-light" type="submit">Delete</button>
+  </form>
+</div>
+<% }) %>

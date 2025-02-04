@@ -2,7 +2,7 @@ const Joi = require("joi");
 const CustomError = require("../../utils/customError.utils");
 
 const reviewSchema = Joi.object({
-  rating: Joi.number().required().min(1).max(5),
+  rating: Joi.number().required().min(2).max(5),
   comment: Joi.string().required().min(5).max(1000),
 });
 

@@ -11,7 +11,7 @@ const validateListing = require("./models/validate/listing.validate.js");
 const validateReview = require("./models/validate/review.validate.js");
 
 const app = express();
-const port = 8000;
+const port = 3000;
 const dir = __dirname;
 
 // Middleware
@@ -55,8 +55,7 @@ app.get(
 app.get(
   "/detail/:id",
   wrapAsync(async (req, res) => {
-    const listing = await Listing.findById(req.params.id);
-    if (!listing) throw new customError(404, "Listing not found");
+    const listing = await Listing.findById(req.params.id).populate("reviews");
     res.render("pages/detail.ejs", { listing });
   })
 );
@@ -65,18 +64,35 @@ app.post(
   "/detail/:id/review",
   validateReview,
   wrapAsync(async (req, res) => {
-    console.log("Entered");
     const { id } = req.params;
     const { rating, comment } = req.body;
 
     const newReview = new Review({ rating, comment });
     await newReview.save();
 
-    let list = Listing.findById(id);
+    let list = await Listing.findById(id);
 
-    // if (list) {
-    //   throw new customError(400, `Bad request (List Not Found)`);
-    // }
+    if (!list) {
+      throw new customError(400, `Bad request (List Not Found)`);
+    }
+    list.reviews.push(newReview._id); // Push the review ID into the array
+    await list.save();
+
+    res.redirect(`/detail/${id}`);
+  })
+);
+
+app.delete(
+  "/detail/:id/review/:reviewid",
+  wrapAsync(async (req, res) => {
+    const { id, reviewid } = req.params;
+
+    // deleting data from database
+    const listing = await Listing.findByIdAndUpdate(
+      id,
+      { $pull: { reviews: reviewid } }, // Remove review reference from `reviews` array
+      { new: true }
+    );
 
     res.redirect(`/detail/${id}`);
   })
