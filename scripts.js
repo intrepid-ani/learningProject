@@ -3,12 +3,9 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const path = require("path");
 const ejsMate = require("ejs-mate");
-const Listing = require("./models/listing.models.js");
-const Review = require("./models/review.models.js");
 const customError = require("./utils/customError.utils.js");
-const wrapAsync = require("./utils/wrapAsync.utils.js");
-const validateListing = require("./models/validate/listing.validate.js");
-const validateReview = require("./models/validate/review.validate.js");
+const detail = require("./routers/detail.route.js");
+const listing = require("./routers/listing.route.js");
 
 const app = express();
 const port = 3000;
@@ -25,136 +22,37 @@ app.engine("ejs", ejsMate);
 // Database Connection
 async function connectDB() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/WonderLust");
-    console.log("Database connected successfully");
+    await mongoose.connect("mongodb://127.0.0.1:27017/WonderLust");
+    console.log("✅ Database connected successfully");
   } catch (err) {
-    console.error("Database connection error:", err);
+    console.error("❌ Database connection error:", err);
     process.exit(1);
   }
 }
 connectDB();
 
-mongoose.connection.on("error", (err) => {
-  console.error(`Database connection error: ${err}`);
+// HomePage route
+app.get("/", (req, res) => {
+  res.redirect("/listing");
 });
 
 // Routes
-// HomePage route
-app.get("/", (req, res) => {
-  res.redirect("/view-listing");
-});
+app.use("/detail", detail);
+app.use("/listing", listing); // ✅ Fixed the missing '/'
 
-app.get(
-  "/view-listing",
-  wrapAsync(async (req, res) => {
-    const listings = await Listing.find();
-    res.render("pages/index.ejs", { listings });
-  })
-);
-
-app.get(
-  "/detail/:id",
-  wrapAsync(async (req, res) => {
-    const listing = await Listing.findById(req.params.id).populate("reviews");
-    res.render("pages/detail.ejs", { listing });
-  })
-);
-
-app.post(
-  "/detail/:id/review",
-  validateReview,
-  wrapAsync(async (req, res) => {
-    const { id } = req.params;
-    const { rating, comment } = req.body;
-
-    const newReview = new Review({ rating, comment });
-    await newReview.save();
-
-    let list = await Listing.findById(id);
-
-    if (!list) {
-      throw new customError(400, `Bad request (List Not Found)`);
-    }
-    list.reviews.push(newReview._id); // Push the review ID into the array
-    await list.save();
-
-    res.redirect(`/detail/${id}`);
-  })
-);
-
-app.delete(
-  "/detail/:id/review/:reviewid",
-  wrapAsync(async (req, res) => {
-    const { id, reviewid } = req.params;
-
-    // deleting data from database
-    const listing = await Listing.findByIdAndUpdate(
-      id,
-      { $pull: { reviews: reviewid } }, // Remove review reference from `reviews` array
-      { new: true }
-    );
-
-    res.redirect(`/detail/${id}`);
-  })
-);
-
-app.get("/create-list", (req, res) => {
-  res.render("pages/list.ejs");
-});
-
-app.post(
-  "/create-list",
-  validateListing,
-  wrapAsync(async (req, res) => {
-    const dataInstant = await Listing.create(req.body);
-    res.redirect(`/detail/${dataInstant._id}`);
-  })
-);
-
-app.get(
-  "/detail/:id/edit",
-  wrapAsync(async (req, res) => {
-    const listing = await Listing.findById(req.params.id);
-    if (!listing) throw new customError(404, "Listing not found");
-    res.render("pages/edit.ejs", { listing });
-  })
-);
-
-app.put(
-  "/detail/:id",
-  wrapAsync(async (req, res) => {
-    const updatedListing = await Listing.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-    if (!updatedListing) throw new customError(404, "Listing not found");
-    res.redirect(`/detail/${updatedListing._id}`);
-  })
-);
-
-app.delete(
-  "/detail/:id",
-  wrapAsync(async (req, res) => {
-    await Listing.findByIdAndDelete(req.params.id);
-    res.redirect("/view-listing");
-  })
-);
-
+// 404 Error Handling
 app.all("*", (req, res, next) => {
   next(new customError(404, "Page not found!"));
 });
 
+// Global Error Handler
 app.use((err, req, res, next) => {
   const { status = 500, message = "Something went wrong!" } = err;
-  console.log(err);
+  console.error(err.stack); // ✅ Logs full stack trace
   res.status(status).render("pages/error.ejs", { status, message });
 });
 
 // Start Server
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`🚀 Server is running at http://localhost:${port}`);
 });
