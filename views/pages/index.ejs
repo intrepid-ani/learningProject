@@ -5,7 +5,7 @@
 <div class="list-container">
   <div class="row">
     <% for(let list of listings) { %>
-    <div class="col-lg-4 col-md-2 col-sm-1 mb-5">
+    <div class="col-lg-3 col-md-5 col-sm-1 mb-5">
       <a href="/detail/<%= list.id %>" class="text-decoration-none">
         <div class="card card-hover card-dec">
           <img src="<%= list.images %>" class="card-img-top" alt="src-img" style="height: 18rem;">
@@ -13,7 +13,7 @@
             <p class=""><%= list.description %></p>
           </div>
           <div class="card-body">
-            <h3 class="card-text fw-semibold fs-3"><%= list.title %></h3>
+            <h5 class="card-text fw-semibold fs-5"><%= list.title %></h5>
             <p class="fw-medium fs-6"><%= list.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) %> / night</p>
           </div>
         </div>

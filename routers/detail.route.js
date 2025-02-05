@@ -44,7 +44,7 @@ Router.delete(
   "/:id",
   wrapAsync(async (req, res) => {
     await Listing.findByIdAndDelete(req.params.id);
-    res.redirect("/view-listing");
+    res.redirect("/listing");
   })
 );
 

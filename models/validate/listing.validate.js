@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const CustomError = require("../../utils/customError.utils.js");
+const customError = require("../../utils/customError.utils.js");
 
 const listingSchema = Joi.object({
   listing: Joi.object(),

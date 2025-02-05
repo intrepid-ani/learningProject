@@ -3,19 +3,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const ratingValue = document.getElementById("ratingValue");
   const ratingInput = document.getElementById("ratingInput");
 
+  const defaultRating = 1; // Default rating value
+  ratingValue.textContent = defaultRating;
+  ratingInput.value = defaultRating;
+
+  // Set default stars as active
+  stars.forEach((s, index) => {
+    s.classList.toggle("active", index < defaultRating);
+  });
+
   stars.forEach((star) => {
     star.addEventListener("click", function () {
-      const value = this.getAttribute("data-value");
+      const value = Number(this.getAttribute("data-value")) || 0;
       ratingValue.textContent = value;
-      ratingInput.value = value; // Set the hidden input value for backend
-
-      // Reset all stars
-      stars.forEach((s) => s.classList.remove("active"));
+      ratingInput.value = value; // Update hidden input
 
       // Highlight selected stars
-      for (let i = 0; i < value; i++) {
-        stars[i].classList.add("active");
-      }
+      stars.forEach((s, index) => {
+        s.classList.toggle("active", index < value);
+      });
     });
   });
 });

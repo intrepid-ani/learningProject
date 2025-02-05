@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/detail", detail);
-app.use("/listing", listing); // ✅ Fixed the missing '/'
+app.use("/listing", listing);
 
 // 404 Error Handling
 app.all("*", (req, res, next) => {
