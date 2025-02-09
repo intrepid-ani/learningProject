@@ -1,10 +1,12 @@
-<% layout ('layouts/base') -%>
+<% layout('layouts/base') %>
+
 <br><br>
 <h3>Latest Listings</h3>
 <hr>
+
 <div class="list-container">
   <div class="row">
-    <% for(let list of listings) { %>
+    <% listings.forEach(list => { %>
     <div class="col-lg-3 col-md-5 col-sm-1 mb-5">
       <a href="/detail/<%= list.id %>" class="text-decoration-none">
         <div class="card card-hover card-dec">
@@ -19,7 +21,6 @@
         </div>
       </a>
     </div>
-    <% } %>
+    <% }) %>
   </div>
-</div>
 </div>

@@ -23,9 +23,9 @@ body {
   min-height: 100vh;
 }
 
-.card-hover:hover {
-  opacity: 0.8;
-  box-shadow: 8px 4px 10px #df4040;
+.card-hover:hover img {
+  filter: brightness(110%) contrast(110%) blur(0.2px);
+  /* box-shadow: 8px 4px 10px #df4040; */
 }
 
 .img {

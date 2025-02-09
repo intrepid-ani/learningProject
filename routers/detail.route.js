@@ -5,12 +5,16 @@ const Listing = require("../models/listing.models.js");
 const Review = require("../models/review.models.js");
 const customError = require("../utils/customError.utils.js");
 
-const Router = express.Router();
+const Router = express.Router({ mergeParams: true });
 
 Router.get(
   "/:id",
   wrapAsync(async (req, res) => {
     const listing = await Listing.findById(req.params.id).populate("reviews");
+    if (!listing) {
+      req.flash("error", "Listing doesn't exists!");
+      return res.redirect("/listing");
+    }
     res.render("pages/detail.ejs", { listing });
   })
 );
@@ -19,7 +23,10 @@ Router.get(
   "/:id/edit",
   wrapAsync(async (req, res) => {
     const listing = await Listing.findById(req.params.id);
-    if (!listing) throw new customError(404, "Listing not found");
+    if (!listing) {
+      req.flash("error", "Listing doesn't exists to update!");
+      return res.redirect("/listing");
+    }
     res.render("pages/edit.ejs", { listing });
   })
 );
@@ -35,7 +42,11 @@ Router.put(
         runValidators: true,
       }
     );
-    if (!updatedListing) throw new customError(404, "Listing not found");
+    if (!updatedListing) {
+      req.flash("error", "Listing doesn't exists to update!");
+      return res.redirect("/listing");
+    }
+    req.flash("success", "Details updated!"); // Flash message set
     res.redirect(`/detail/${updatedListing._id}`);
   })
 );
@@ -44,6 +55,7 @@ Router.delete(
   "/:id",
   wrapAsync(async (req, res) => {
     await Listing.findByIdAndDelete(req.params.id);
+    req.flash("success", "listing deleted!"); // Flash message set
     res.redirect("/listing");
   })
 );
@@ -66,6 +78,7 @@ Router.post(
     list.reviews.push(newReview._id);
     await list.save();
 
+    req.flash("success", "Review added!"); // Flash message set
     res.redirect(`/detail/${id}`);
   })
 );
@@ -80,7 +93,7 @@ Router.delete(
       { $pull: { reviews: reviewid } },
       { new: true }
     );
-
+    req.flash("success", "Review deleted"); // Flash message set
     res.redirect(`/detail/${id}`);
   })
 );
